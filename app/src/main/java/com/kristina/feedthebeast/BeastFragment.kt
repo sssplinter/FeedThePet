@@ -14,7 +14,6 @@ import com.kristina.feedthebeast.ui.BeastViewModel
 
 class BeastFragment : Fragment() {
 
-
     lateinit var topAnimation: Animation
     lateinit var bottomAnimation: Animation
 
@@ -27,80 +26,79 @@ class BeastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentBeastBinding.inflate(inflater, container, false)
-        return binding.root
+        setHasOptionsMenu(true)
 
+        binding = FragmentBeastBinding.inflate(inflater, container, false)
+
+        // initialize or get existing view model
+        beastViewModel = ViewModelProvider(this).get(BeastViewModel::class.java)
+
+        binding.score.text = beastViewModel.score.toString()
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        beastViewModel = ViewModelProvider(this).get(BeastViewModel::class.java)
-
-        binding.score.text = beastViewModel.score.toString()
-
         beastViewModel.score.observe(viewLifecycleOwner) { score ->
             binding.score.text = score.toString()
         }
 
-
-        topAnimation = AnimationUtils.loadAnimation(context, R.anim.top_animation, )
-        bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.bottom_animation, )
-
-        val cat = view.findViewById<View>(R.id.cat)
-        cat.animation = topAnimation
-
-
-        beastViewModel.animate.observe(viewLifecycleOwner) { animate ->
-            if (animate) {
-                beastViewModel.doneAnimation()
-                val root = view
-                if (root != null) {
-                    val animationDuration = 500L
-                    val heart0 = root.findViewById<View>(R.id.heart_0)
-                    val heart1 = root.findViewById<View>(R.id.heart_1)
-                    val heart2 = root.findViewById<View>(R.id.heart_2)
-
-                    val appearAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 0f, 1f).apply {
-                        duration = animationDuration
-                    }
-                    val appearAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 0f, 1f).apply {
-                        duration = animationDuration
-                        startDelay = animationDuration
-                    }
-                    val appearAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 0f, 1f).apply {
-                        duration = animationDuration
-                        startDelay = animationDuration * 2
-                    }
-                    val fadeAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 1f, 0f).apply {
-                        duration = animationDuration
-                        startDelay = animationDuration * 3
-                    }
-                    val fadeAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 1f, 0f).apply {
-                        duration = animationDuration
-                        startDelay = animationDuration * 4
-                    }
-                    val fadeAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 1f, 0f).apply {
-                        duration = animationDuration
-                        startDelay = animationDuration * 5
-                    }
-
-
-                    AnimatorSet().apply {
-                        play(appearAnim0).with(appearAnim1).with(appearAnim2)
-                            .with(fadeAnim1).with(fadeAnim0).with(fadeAnim2)
-
-                        start()
-                    }
-                }
-            }
-        }
         binding.feedButton.setOnClickListener {
             beastViewModel.feed()
         }
 
+        beastViewModel.animate.observe(viewLifecycleOwner) { animate ->
+            if (animate) {
+                beastViewModel.doneAnimation()
+                val animationDuration = 500L
+
+                val appearAnim0 =
+                    ObjectAnimator.ofFloat(binding.heart0, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                    }
+                val appearAnim1 =
+                    ObjectAnimator.ofFloat(binding.heart1, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration
+                    }
+                val appearAnim2 =
+                    ObjectAnimator.ofFloat(binding.heart2, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration * 2
+                    }
+                val fadeAnim0 = ObjectAnimator.ofFloat(binding.heart0, "alpha", 1f, 0f).apply {
+                    duration = animationDuration
+                    startDelay = animationDuration * 3
+                }
+                val fadeAnim1 = ObjectAnimator.ofFloat(binding.heart1, "alpha", 1f, 0f).apply {
+                    duration = animationDuration
+                    startDelay = animationDuration * 4
+                }
+                val fadeAnim2 = ObjectAnimator.ofFloat(binding.heart2, "alpha", 1f, 0f).apply {
+                    duration = animationDuration
+                    startDelay = animationDuration * 5
+                }
+
+                AnimatorSet().apply {
+                    play(appearAnim0).with(appearAnim1).with(appearAnim2)
+                        .with(fadeAnim1).with(fadeAnim0).with(fadeAnim2)
+
+                    start()
+                }
+            }
+        }
+
+        // animation
+        topAnimation = AnimationUtils.loadAnimation(context, R.anim.top_animation)
+        bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.bottom_animation)
+
+        val cat = view.findViewById<View>(R.id.cat)
+        cat.animation = topAnimation
     }
 
+    //TODO
     override fun onDestroyView() {
         super.onDestroyView()
     }
@@ -137,9 +135,4 @@ class BeastFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        setHasOptionsMenu(true)
-    }
 }

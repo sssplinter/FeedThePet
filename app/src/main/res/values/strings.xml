@@ -8,8 +8,8 @@
     <string name="position">Position</string>
     <string name="select_an_avatar">Select an Avatar</string>
     <string name="android_trivia">Android Trivia</string>
-    <string name="about_text">Android Trivia will help remind you of important concepts you have learned and will learn in Android development.\n\nConsider modifying the questions and graphics to make this game your own!</string>
-    <string name="rules_text">Select the answer from the options given. Each time you get an answer correct, you advance to the next question.\n\nIf you get the answer wrong, your game ends! You can return to the title screen using up or back from within the game screen, and this will also end your game.</string>
+    <string name="about_text">Group 951006.\n\nSementsova Kristina\n\nLab 1: FEED THE BEAST</string>
+    <string name="rules_text">Just look into his eyes =(\n\nHurry up!!!\nFeed and play with him to make him happy and love you</string>
     <string name="rules">Rules</string>
     <string name="about">About</string>
     <string name="trivia_hint">Trivia Hint</string>
@@ -20,5 +20,12 @@
     <string name="congratulations">Congratulations!</string>
     <string name="sharing_not_available">Sharing Not Available</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feed_to_beast">FEED TO BEAST</string>
+    <string name="beast">cat</string>
+    <string name="about_programmer_title">ABOUT PROGRAMMER</string>
+    <string name="rules_set_title">RULES</string>
+    <string name="about_cat">This is a small kitten who is very hungry, sad and bored.</string>
+    <string name="how_to_feed_text">To feed the cat press the butoon:</string>
+    <string name="about_score_text">You can see how many times you fed the cat:</string>
 
 </resources>
