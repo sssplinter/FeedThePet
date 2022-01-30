@@ -1,27 +1,145 @@
 package com.kristina.feedthebeast
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.kristina.feedthebeast.databinding.FragmentBeastBinding
+import com.kristina.feedthebeast.ui.BeastViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- */
 class BeastFragment : Fragment() {
 
 
+    lateinit var topAnimation: Animation
+    lateinit var bottomAnimation: Animation
+
+    private lateinit var beastViewModel: BeastViewModel
+    private lateinit var binding: FragmentBeastBinding
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beast, container, false)
+    ): View {
+
+        binding = FragmentBeastBinding.inflate(inflater, container, false)
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        beastViewModel = ViewModelProvider(this).get(BeastViewModel::class.java)
+
+        binding.score.text = beastViewModel.score.toString()
+
+        beastViewModel.score.observe(viewLifecycleOwner) { score ->
+            binding.score.text = score.toString()
+        }
+
+
+        topAnimation = AnimationUtils.loadAnimation(context, R.anim.top_animation, )
+        bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.bottom_animation, )
+
+        val cat = view.findViewById<View>(R.id.cat)
+        cat.animation = topAnimation
+
+
+        beastViewModel.animate.observe(viewLifecycleOwner) { animate ->
+            if (animate) {
+                beastViewModel.doneAnimation()
+                val root = view
+                if (root != null) {
+                    val animationDuration = 500L
+                    val heart0 = root.findViewById<View>(R.id.heart_0)
+                    val heart1 = root.findViewById<View>(R.id.heart_1)
+                    val heart2 = root.findViewById<View>(R.id.heart_2)
+
+                    val appearAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                    }
+                    val appearAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration
+                    }
+                    val appearAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 0f, 1f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration * 2
+                    }
+                    val fadeAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 1f, 0f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration * 3
+                    }
+                    val fadeAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 1f, 0f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration * 4
+                    }
+                    val fadeAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 1f, 0f).apply {
+                        duration = animationDuration
+                        startDelay = animationDuration * 5
+                    }
+
+
+                    AnimatorSet().apply {
+                        play(appearAnim0).with(appearAnim1).with(appearAnim2)
+                            .with(fadeAnim1).with(fadeAnim0).with(fadeAnim2)
+
+                        start()
+                    }
+                }
+            }
+        }
+        binding.feedButton.setOnClickListener {
+            beastViewModel.feed()
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.beast_menu, menu)
+
+        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
+            // hide the menu item if it doesn't resolve
+            menu?.findItem(R.id.share)?.setVisible(false)
+        }
+    }
+
+    private fun getShareIntent(): Intent {
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plane"
+        shareIntent.putExtra(
+            Intent.EXTRA_TEXT,
+            getString(R.string.share_success_text, beastViewModel.score.value)
+        )
+        return shareIntent
+    }
+
+    private fun shareSuccess() {
+        startActivity(getShareIntent())
+    }
+
+    // for items we selected from menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.share -> shareSuccess()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        setHasOptionsMenu(true)
     }
 }
