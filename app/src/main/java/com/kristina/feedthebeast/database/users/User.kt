@@ -1,5 +1,6 @@
 package com.kristina.feedthebeast.database.users
 
+import androidx.annotation.ColorInt
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -8,9 +9,12 @@ import androidx.room.PrimaryKey
 data class User(
 
     @PrimaryKey(autoGenerate = true)
-    val userId: Long = 0L,
+    var userId: Long = 0L,
 
     @ColumnInfo(name = "user_name")
-    val name: String = "name"
+    var name: String = "name",
+
+    @ColumnInfo(name = "score")
+    var score: Int = 0
 ) {
 }

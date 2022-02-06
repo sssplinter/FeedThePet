@@ -9,7 +9,7 @@ data class Achievement(
     @PrimaryKey(autoGenerate = true)
     var achievementId: Long = 0L,
 
-    @ColumnInfo(name = "achievement_name")
+    @ColumnInfo(name = "name")
     var name: String = "Achievement",
 
     @ColumnInfo(name = "score_to_achieve")

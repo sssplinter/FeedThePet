@@ -9,8 +9,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.kristina.feedthebeast.database.FeedTheBeastDatabase
 import com.kristina.feedthebeast.databinding.FragmentBeastBinding
 import com.kristina.feedthebeast.ui.BeastViewModel
+import com.kristina.feedthebeast.ui.FeedTheBeastViewModelFactory
 
 class BeastFragment : Fragment() {
 
@@ -30,16 +32,25 @@ class BeastFragment : Fragment() {
 
         binding = FragmentBeastBinding.inflate(inflater, container, false)
 
-        // initialize or get existing view model
-        beastViewModel = ViewModelProvider(this).get(BeastViewModel::class.java)
 
-        binding.score.text = beastViewModel.score.toString()
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = FeedTheBeastDatabase.getInstance(application).feedTheBeastDatabaseDao
+
+        val viewModelFactory = FeedTheBeastViewModelFactory(dataSource, application)
+
+
+        beastViewModel = ViewModelProvider(this, viewModelFactory).get(BeastViewModel::class.java)
+
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        binding.score.text = beastViewModel.score.toString()
 
         beastViewModel.score.observe(viewLifecycleOwner) { score ->
             binding.score.text = score.toString()

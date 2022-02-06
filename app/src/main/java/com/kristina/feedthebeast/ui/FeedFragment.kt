@@ -31,61 +31,61 @@ class FeedFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        beastViewModel = BeastViewModel().apply {
-            score.observe(viewLifecycleOwner) { score ->
-                view?.findViewById<TextView>(R.id.score)?.apply {
-                    text = score.toString()
-                }
-            }
-
-            animate.observe(viewLifecycleOwner) { animate ->
-                if (animate) {
-                    beastViewModel.doneAnimation()
-                    val root = view
-                    if (root != null) {
-                        val animationDuration = 500L
-                        val heart0 = root.findViewById<View>(R.id.heart_0)
-                        val heart1 = root.findViewById<View>(R.id.heart_1)
-                        val heart2 = root.findViewById<View>(R.id.heart_2)
-
-                        val appearAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 0f, 1f).apply {
-                            duration = animationDuration
-                        }
-                        val appearAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 0f, 1f).apply {
-                            duration = animationDuration
-                            startDelay = animationDuration
-                        }
-                        val appearAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 0f, 1f).apply {
-                            duration = animationDuration
-                            startDelay = animationDuration * 2
-                        }
-                        val fadeAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 1f, 0f).apply {
-                            duration = animationDuration
-                            startDelay = animationDuration * 3
-                        }
-                        val fadeAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 1f, 0f).apply {
-                            duration = animationDuration
-                            startDelay = animationDuration * 4
-                        }
-                        val fadeAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 1f, 0f).apply {
-                            duration = animationDuration
-                            startDelay = animationDuration * 5
-                        }
-
-
-                        AnimatorSet().apply {
-                            play(appearAnim0).with(appearAnim1).with(appearAnim2)
-                                .with(fadeAnim1).with(fadeAnim0).with(fadeAnim2)
-
-                            start()
-                        }
-                    }
-
-                }
-            }
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        beastViewModel = BeastViewModel().apply {
+//            score.observe(viewLifecycleOwner) { score ->
+//                view?.findViewById<TextView>(R.id.score)?.apply {
+//                    text = score.toString()
+//                }
+//            }
+//
+//            animate.observe(viewLifecycleOwner) { animate ->
+//                if (animate) {
+//                    beastViewModel.doneAnimation()
+//                    val root = view
+//                    if (root != null) {
+//                        val animationDuration = 500L
+//                        val heart0 = root.findViewById<View>(R.id.heart_0)
+//                        val heart1 = root.findViewById<View>(R.id.heart_1)
+//                        val heart2 = root.findViewById<View>(R.id.heart_2)
+//
+//                        val appearAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 0f, 1f).apply {
+//                            duration = animationDuration
+//                        }
+//                        val appearAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 0f, 1f).apply {
+//                            duration = animationDuration
+//                            startDelay = animationDuration
+//                        }
+//                        val appearAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 0f, 1f).apply {
+//                            duration = animationDuration
+//                            startDelay = animationDuration * 2
+//                        }
+//                        val fadeAnim0 = ObjectAnimator.ofFloat(heart0, "alpha", 1f, 0f).apply {
+//                            duration = animationDuration
+//                            startDelay = animationDuration * 3
+//                        }
+//                        val fadeAnim1 = ObjectAnimator.ofFloat(heart1, "alpha", 1f, 0f).apply {
+//                            duration = animationDuration
+//                            startDelay = animationDuration * 4
+//                        }
+//                        val fadeAnim2 = ObjectAnimator.ofFloat(heart2, "alpha", 1f, 0f).apply {
+//                            duration = animationDuration
+//                            startDelay = animationDuration * 5
+//                        }
+//
+//
+//                        AnimatorSet().apply {
+//                            play(appearAnim0).with(appearAnim1).with(appearAnim2)
+//                                .with(fadeAnim1).with(fadeAnim0).with(fadeAnim2)
+//
+//                            start()
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
 }

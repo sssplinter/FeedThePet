@@ -8,12 +8,12 @@ import androidx.room.PrimaryKey
 data class UserToAchievement(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "user_id")
-    val userId: Long = 0L,
+    var userId: Long = 0L,
 
     @ColumnInfo(name = "achievement_id")
-    val achievementId: Long = 0L
+    var achievementId: Long = 0L
 ) {
 }

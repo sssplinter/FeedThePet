@@ -8,14 +8,14 @@ import androidx.room.PrimaryKey
 data class Feeding(
 
     @PrimaryKey(autoGenerate = true)
-    val feedingId: Long = 0L,
+    var feedingId: Long = 0L,
 
     @ColumnInfo(name = "feeding_date_milli")
-    val dateMilli: Long = System.currentTimeMillis(),
+    var dateMilli: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "feeding_score")
-    val score: Int = -1,
+    var score: Int = -1,
 
     @ColumnInfo(name = "user_id")
-    val userId: Long = 0L
+    var userId: Long = 0L
 )

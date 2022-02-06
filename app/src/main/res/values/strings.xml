@@ -27,5 +27,8 @@
     <string name="about_cat">This is a small kitten who is very hungry, sad and bored.</string>
     <string name="how_to_feed_text">To feed the cat press the butoon:</string>
     <string name="about_score_text">You can see how many times you fed the cat:</string>
+    <string name="appwidget_text">Start\nGame</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 
 </resources>
