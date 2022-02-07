@@ -1,11 +1,10 @@
-package com.kristina.feedthebeast
+package com.kristina.feedthebeast.widget
 
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.content.Intent
-import android.provider.Settings.System.getString
 import android.widget.RemoteViews
+import com.kristina.feedthebeast.R
 
 /**
  * Implementation of App Widget functionality.

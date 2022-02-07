@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast
+package com.kristina.feedthebeast.ui.splashScreen
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
@@ -11,6 +11,8 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import com.kristina.feedthebeast.MainActivity
+import com.kristina.feedthebeast.R
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -45,7 +47,7 @@ class SplashScreenActivity : AppCompatActivity() {
         ivBottom.startAnimation(bottomAnim)
 
         // text animation
-        val textAnim = AnimationUtils.loadAnimation(this,R.anim.text_animation);
+        val textAnim = AnimationUtils.loadAnimation(this, R.anim.text_animation);
         textView.startAnimation(textAnim);
 
         // object animator

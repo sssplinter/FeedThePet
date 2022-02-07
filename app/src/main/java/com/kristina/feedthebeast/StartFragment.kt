@@ -14,18 +14,20 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 import com.google.android.gms.common.AccountPicker
 
 import android.content.Intent
+import androidx.core.os.bundleOf
 
-
-
+const val BUNDLE_KEY = "USER_NAME"
 
 class StartFragment : Fragment() {
-
-    private val G_PLUS_SCOPE = "oauth2:https://www.googleapis.com/auth/plus.me"
-    private val USERINFO_SCOPE = "https://www.googleapis.com/auth/userinfo.profile"
-    private val EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email"
-    private val SCOPES = "$G_PLUS_SCOPE $USERINFO_SCOPE $EMAIL_SCOPE"
+//
+//    private val G_PLUS_SCOPE = "oauth2:https://www.googleapis.com/auth/plus.me"
+//    private val USERINFO_SCOPE = "https://www.googleapis.com/auth/userinfo.profile"
+//    private val EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email"
+//    private val SCOPES = "$G_PLUS_SCOPE $USERINFO_SCOPE $EMAIL_SCOPE"
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var userName: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,13 @@ class StartFragment : Fragment() {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
 
+
+
+        //todo
+        userName = "kristina"
+
+
+        
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
 
@@ -54,7 +63,7 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.start_feeding).setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_startFragment_to_beastFragment
-            )
+            , bundleOf(BUNDLE_KEY to userName))
         }
 
         val btn = view.findViewById(R.id.sign_in_button) as View

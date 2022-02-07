@@ -5,47 +5,42 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
 import com.kristina.feedthebeast.databinding.FragmentBeastBinding
-import com.kristina.feedthebeast.ui.BeastViewModel
-import com.kristina.feedthebeast.ui.FeedTheBeastViewModelFactory
+import com.kristina.feedthebeast.ui.feed.viewNodel.BeastViewModel
+import com.kristina.feedthebeast.ui.feed.viewNodel.FeedTheBeastViewModelFactory
 
 private const val FILE_KEY = "PREF_FILE_KEY"
 private const val SAVED_KEY = "SAVED_KEY"
 
 class BeastFragment : Fragment() {
 
-    lateinit var topAnimation: Animation
-    lateinit var bottomAnimation: Animation
-
     private lateinit var beastViewModel: BeastViewModel
     private lateinit var binding: FragmentBeastBinding
+
+    private lateinit var userName: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         setHasOptionsMenu(true)
 
         binding = FragmentBeastBinding.inflate(inflater, container, false)
 
-
         val application = requireNotNull(this.activity).application
-
         val dataSource = FeedTheBeastDatabase.getInstance(application).feedTheBeastDatabaseDao
-
         val viewModelFactory = FeedTheBeastViewModelFactory(dataSource, application)
-
-
         beastViewModel = ViewModelProvider(this, viewModelFactory).get(BeastViewModel::class.java)
 
+        userName = arguments?.getString(BUNDLE_KEY).toString()
+        Log.i("user", userName)
 
         return binding.root
     }
@@ -55,18 +50,8 @@ class BeastFragment : Fragment() {
 
         binding.score.text = beastViewModel.score.toString()
 
-        val sharedPref = activity?.getSharedPreferences(
-            FILE_KEY, Context.MODE_PRIVATE
-        )
-
         beastViewModel.score.observe(viewLifecycleOwner) { score ->
             binding.score.text = score.toString()
-            if (sharedPref != null) {
-                with(sharedPref.edit()) {
-                    putInt(SAVED_KEY, score)
-                    apply()
-                }
-            }
         }
 
         binding.feedButton.setOnClickListener {
@@ -115,16 +100,9 @@ class BeastFragment : Fragment() {
         }
 
         // animation
-        topAnimation = AnimationUtils.loadAnimation(context, R.anim.top_animation)
-        bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.bottom_animation)
-
+        val topAnimation = AnimationUtils.loadAnimation(context, R.anim.top_animation)
         val cat = view.findViewById<View>(R.id.cat)
-        cat.animation = topAnimation
-    }
-
-    //TODO
-    override fun onDestroyView() {
-        super.onDestroyView()
+        cat.startAnimation(topAnimation)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -133,7 +111,7 @@ class BeastFragment : Fragment() {
 
         if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
             // hide the menu item if it doesn't resolve
-            menu?.findItem(R.id.share)?.setVisible(false)
+            menu?.findItem(R.id.share)?.isVisible = false
         }
     }
 
@@ -159,4 +137,20 @@ class BeastFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onStop() {
+        super.onStop()
+        beastViewModel.setFeedingToDatabase(userName)
+
+        val sharedPref = activity?.getSharedPreferences(
+            FILE_KEY, Context.MODE_PRIVATE
+        )
+
+        if (sharedPref != null) {
+            with(sharedPref.edit()) {
+                putInt(SAVED_KEY, beastViewModel.score.value!!)
+                apply()
+            }
+            beastViewModel.updateWorkoutsWidget(context!!)
+        }
+    }
 }

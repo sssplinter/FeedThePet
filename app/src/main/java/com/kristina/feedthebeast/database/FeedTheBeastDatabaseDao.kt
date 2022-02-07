@@ -26,7 +26,7 @@ interface FeedTheBeastDatabaseDao {
     @Query("SELECT score FROM users_table WHERE userId =:userId ORDER BY userId ASC LIMIT 1")
     fun getUserScore(userId: Long) : Int?
 
-    @Query("SELECT * FROM feeding_table WHERE user_id= :userId ORDER BY feeding_date_milli DESC")
-    fun getUserFeedings(userId: Long): LiveData<List<Feeding>>
+    @Query("SELECT * FROM feeding_table WHERE user_name= :userName ORDER BY feeding_date_milli DESC")
+    fun getUserFeedings(userName: String): LiveData<List<Feeding>>
 
 }

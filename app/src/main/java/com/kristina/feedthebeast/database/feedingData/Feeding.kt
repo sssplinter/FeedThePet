@@ -16,6 +16,6 @@ data class Feeding(
     @ColumnInfo(name = "feeding_score")
     var score: Int = -1,
 
-    @ColumnInfo(name = "user_id")
-    var userId: Long = 0L
+    @ColumnInfo(name = "user_name")
+    var userName: String = ""
 )

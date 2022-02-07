@@ -21,7 +21,7 @@ class LoadingScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.load).setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_loadingScreenFragment_to_startFragment)
+//            Navigation.findNavController(view).navigate(R.id.action_loadingScreenFragment_to_startFragment)
         }
     }
 

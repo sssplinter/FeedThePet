@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FeedTheBeast">
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".ui.splashScreen.SplashScreenActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -23,7 +23,7 @@
         </activity>
 
         <receiver
-            android:name=".FeedTheBeastWidget"
+            android:name=".widget.FeedTheBeastWidget"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

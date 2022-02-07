@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast.ui
+package com.kristina.feedthebeast.ui.feed.viewNodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
