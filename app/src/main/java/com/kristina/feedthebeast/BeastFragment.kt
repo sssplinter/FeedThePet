@@ -2,6 +2,7 @@ package com.kristina.feedthebeast
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -13,6 +14,9 @@ import com.kristina.feedthebeast.database.FeedTheBeastDatabase
 import com.kristina.feedthebeast.databinding.FragmentBeastBinding
 import com.kristina.feedthebeast.ui.BeastViewModel
 import com.kristina.feedthebeast.ui.FeedTheBeastViewModelFactory
+
+private const val FILE_KEY = "PREF_FILE_KEY"
+private const val SAVED_KEY = "SAVED_KEY"
 
 class BeastFragment : Fragment() {
 
@@ -49,11 +53,20 @@ class BeastFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.score.text = beastViewModel.score.toString()
+
+        val sharedPref = activity?.getSharedPreferences(
+            FILE_KEY, Context.MODE_PRIVATE
+        )
 
         beastViewModel.score.observe(viewLifecycleOwner) { score ->
             binding.score.text = score.toString()
+            if (sharedPref != null) {
+                with(sharedPref.edit()) {
+                    putInt(SAVED_KEY, score)
+                    apply()
+                }
+            }
         }
 
         binding.feedButton.setOnClickListener {

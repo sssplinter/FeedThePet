@@ -9,8 +9,21 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.core.app.ActivityCompat.startActivityForResult
+
+import com.google.android.gms.common.AccountPicker
+
+import android.content.Intent
+
+
+
 
 class StartFragment : Fragment() {
+
+    private val G_PLUS_SCOPE = "oauth2:https://www.googleapis.com/auth/plus.me"
+    private val USERINFO_SCOPE = "https://www.googleapis.com/auth/userinfo.profile"
+    private val EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email"
+    private val SCOPES = "$G_PLUS_SCOPE $USERINFO_SCOPE $EMAIL_SCOPE"
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -20,7 +33,6 @@ class StartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
-
 
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
@@ -44,11 +56,15 @@ class StartFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_startFragment_to_beastFragment
             )
         }
-//        drawerLayout =
-//        val toolbar = view.findViewById<View>(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
+        val btn = view.findViewById(R.id.sign_in_button) as View
+        btn.setOnClickListener {
+                val intent = AccountPicker.newChooseAccountIntent(
+                    null, null, arrayOf("com.google"),
+                    false, null, null, null, null
+                )
+                startActivityForResult(intent, 123)
+        }
     }
-
-
 
 }

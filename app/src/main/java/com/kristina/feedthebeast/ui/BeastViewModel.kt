@@ -28,7 +28,6 @@ class BeastViewModel(
 
     private val viewModelJob = Job()
 
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -57,14 +56,7 @@ class BeastViewModel(
     fun feed() {
         uiScope.launch {
 
-//            user = getScore()
-//            if (user != null) {
-//                _score.value = user!!.score
-//            } else {
             _score.value = _score.value?.plus(1)
-//            }
-
-            updateWorkoutsWidget(getApplication<Application>().applicationContext)
 
             setFeedingToDatabase()
             getFeedingData()
@@ -72,13 +64,15 @@ class BeastViewModel(
             if (checkScore()) {
                 _animate.value = true
             }
+
+                  updateWorkoutsWidget(getApplication<Application>().applicationContext)
+
         }
     }
 
     private fun updateWorkoutsWidget(context: Context) {
-        var intent = Intent(context, FeedTheBeastWidget::class.java)
+        val intent = Intent(context, FeedTheBeastWidget::class.java)
         intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-        intent.putExtra("SCORE_EXTRA", _score.value)
 
         val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(
             ComponentName(
