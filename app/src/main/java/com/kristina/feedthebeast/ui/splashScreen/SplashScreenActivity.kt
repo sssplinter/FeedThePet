@@ -57,7 +57,7 @@ class SplashScreenActivity : AppCompatActivity() {
             PropertyValuesHolder.ofFloat("scaleY", 1.2f)
         )
         objAnimator.duration = 800
-        objAnimator.repeatCount = 5
+        objAnimator.repeatCount = 3
         // set repeat mode
         objAnimator.repeatMode = ValueAnimator.REVERSE
 

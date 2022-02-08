@@ -35,14 +35,8 @@ class StartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true)
-
-
-
         //todo
         userName = "kristina"
-
-
-        
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
 
@@ -52,27 +46,28 @@ class StartFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-//            R.id.aboutFragment ->
-        }
-        return NavigationUI.onNavDestinationSelected(item, view!!.findNavController()) || super.onOptionsItemSelected(item)
-
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            view!!.findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.start_feeding).setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_startFragment_to_beastFragment
-            , bundleOf(BUNDLE_KEY to userName))
+
+        view.findViewById<Button>(R.id.start_feeding).setOnClickListener {
+            Navigation.findNavController(view).navigate(
+                R.id.action_startFragment_to_beastFragment, bundleOf(BUNDLE_KEY to userName)
+            )
         }
 
         val btn = view.findViewById(R.id.sign_in_button) as View
         btn.setOnClickListener {
-                val intent = AccountPicker.newChooseAccountIntent(
-                    null, null, arrayOf("com.google"),
-                    false, null, null, null, null
-                )
-                startActivityForResult(intent, 123)
+            val intent = AccountPicker.newChooseAccountIntent(
+                null, null, arrayOf("com.google"),
+                false, null, null, null, null
+            )
+            startActivityForResult(intent, 123)
         }
     }
 

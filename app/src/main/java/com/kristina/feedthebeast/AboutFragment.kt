@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast.ui
+package com.kristina.feedthebeast
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
