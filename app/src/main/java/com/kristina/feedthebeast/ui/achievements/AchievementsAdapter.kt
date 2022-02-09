@@ -1,32 +1,33 @@
-package com.kristina.feedthebeast.ui.results
+package com.kristina.feedthebeast.ui.achievements
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kristina.feedthebeast.R
-import com.kristina.feedthebeast.database.feedingData.Feeding
-import com.kristina.feedthebeast.databinding.ResultItemBinding
+import com.kristina.feedthebeast.database.achievements.Achievement
+import com.kristina.feedthebeast.databinding.AchievementItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ResultAdapter : RecyclerView.Adapter<ResultAdapter.ItemViewHolder>() {
+class AchievementsAdapter : RecyclerView.Adapter<AchievementsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val binding = ResultItemBinding.bind(itemView)
+        private val binding = AchievementItemBinding.bind(itemView)
         private val formatter = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault())
 
-        fun bind(result: Feeding) = with(binding) {
-            userName.text = "User: ${result.userName}"
-            resultScore.text = "Score: ${result.score.toString()}"
+        fun bind(achievement: Achievement) = with(binding) {
+            userName.text = "User: ${achievement.userName}"
 
-            val time = formatter.format(result.dateMilli)
+            achievementName.text = "Achievement: ${achievement.name}"
+
+            val time = formatter.format(achievement.dateMilli)
             date.text = "Date: $time"
         }
     }
 
-    var data = listOf<Feeding>()
+    var data = listOf<Achievement>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -34,7 +35,7 @@ class ResultAdapter : RecyclerView.Adapter<ResultAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.result_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.achievement_item, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -42,5 +43,7 @@ class ResultAdapter : RecyclerView.Adapter<ResultAdapter.ItemViewHolder>() {
         holder.bind(data[position])
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() =
+        data.size
+
 }

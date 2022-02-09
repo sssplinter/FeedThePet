@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast.ui.results
+package com.kristina.feedthebeast.ui.achievements
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,41 +8,41 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
-import com.kristina.feedthebeast.databinding.FragmentResultsBinding
+import com.kristina.feedthebeast.databinding.FragmentAchievementsBinding
 
-class ResultsFragment : Fragment() {
+class AchievementsFragment : Fragment() {
 
-    private lateinit var binding: FragmentResultsBinding
+    lateinit var binding : FragmentAchievementsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentResultsBinding.inflate(inflater, container, false)
+        binding = FragmentAchievementsBinding.inflate(inflater, container, false)
 
         val application = requireNotNull(this.activity).application
 
         val dataSource = FeedTheBeastDatabase.getInstance(application).feedTheBeastDatabaseDao
 
-        val viewModelFactory = ResultsViewModelFactory(dataSource, application)
+        val viewModelFactory = AchievementsViewModelFactory(dataSource, application)
 
         val resultsViewModel =
-            ViewModelProvider(this, viewModelFactory).get(ResultsViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(AchievementsViewModel::class.java)
 
-        val adapter = ResultAdapter()
+        val adapter = AchievementsAdapter()
 
+        binding.achievementsList.layoutManager = LinearLayoutManager(context)
+        binding.achievementsList.adapter = adapter
 
-        binding.resultsList.layoutManager = LinearLayoutManager(context)
-        binding.resultsList.adapter = adapter
-
-
-        resultsViewModel.results.observe(viewLifecycleOwner) {
+        resultsViewModel.achievements.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.data = it
             }
         }
 
+
         return binding.root
     }
+
 }

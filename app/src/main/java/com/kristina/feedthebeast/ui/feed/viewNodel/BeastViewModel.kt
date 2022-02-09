@@ -59,7 +59,6 @@ class BeastViewModel(
             _animate.value = true
         }
         if (checkForAchievement()) {
-            //_achieve.value = true
             getAchievementName()
         }
     }
@@ -71,8 +70,7 @@ class BeastViewModel(
             feeding.score = _score.value!!
 
             uiScope.launch(Dispatchers.IO) {
-                val x = database.insertFeeding(listOf(feeding))
-                val y = 5
+                database.insertFeeding(feeding)
             }
         }
     }

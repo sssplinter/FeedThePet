@@ -1,19 +1,17 @@
-package com.kristina.feedthebeast
+package com.kristina.feedthebeast.ui.rules
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kristina.feedthebeast.R
 
-class AchievementsFragment : Fragment() {
-
+class RulesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_achievements, container, false)
+        return inflater.inflate(R.layout.fragment_rules, container, false)
     }
-
 }

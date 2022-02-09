@@ -1,9 +1,10 @@
 package com.kristina.feedthebeast.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import android.util.Log
+import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.kristina.feedthebeast.database.achievements.Achievement
 import com.kristina.feedthebeast.database.feedingData.Feeding
 import com.kristina.feedthebeast.database.users.User
@@ -31,7 +32,23 @@ abstract class FeedTheBeastDatabase : RoomDatabase() {
                         context.applicationContext,
                         FeedTheBeastDatabase::class.java,
                         "feed_the_beast_database"
-                    ).fallbackToDestructiveMigration().build()
+                    ).addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            Log.d("BESISH", "DB CREATED")
+                        }
+
+                        override fun onOpen(db: SupportSQLiteDatabase) {
+                            super.onOpen(db)
+                            Log.d("BESISH", "DB OEPEND")
+                        }
+
+                        override fun onDestructiveMigration(db: SupportSQLiteDatabase) {
+                            super.onDestructiveMigration(db)
+                            Log.d("BESISH", "HUI")
+                        }
+                    }).build()
+
                     INSTANCE = instance
                 }
                 return instance

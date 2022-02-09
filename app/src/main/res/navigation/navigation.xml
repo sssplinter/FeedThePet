@@ -20,12 +20,12 @@
         tools:layout="@layout/fragment_beast" />
     <fragment
         android:id="@+id/rulesFragment"
-        android:name="com.kristina.feedthebeast.ui.RulesFragment"
+        android:name="com.kristina.feedthebeast.ui.rules.RulesFragment"
         android:label="fragment_rules"
         tools:layout="@layout/fragment_rules" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.kristina.feedthebeast.AboutFragment"
+        android:name="com.kristina.feedthebeast.ui.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <fragment
@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_results" />
     <fragment
         android:id="@+id/achievementsFragment"
-        android:name="com.kristina.feedthebeast.AchievementsFragment"
+        android:name="com.kristina.feedthebeast.ui.achievements.AchievementsFragment"
         android:label="fragment_achievements"
         tools:layout="@layout/fragment_achievements" />
 </navigation>

@@ -68,6 +68,5 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 4000)
-
     }
 }

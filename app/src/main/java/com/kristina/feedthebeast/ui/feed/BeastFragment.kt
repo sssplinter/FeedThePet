@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast
+package com.kristina.feedthebeast.ui.feed
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.kristina.feedthebeast.BUNDLE_KEY
+import com.kristina.feedthebeast.R
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
 import com.kristina.feedthebeast.databinding.FragmentBeastBinding
 import com.kristina.feedthebeast.ui.feed.viewNodel.BeastViewModel
@@ -118,7 +120,7 @@ class BeastFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.beast_menu, menu)
 
-        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
+        if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
             // hide the menu item if it doesn't resolve
             menu?.findItem(R.id.share)?.isVisible = false
         }
@@ -159,7 +161,7 @@ class BeastFragment : Fragment() {
                 putInt(SAVED_KEY, beastViewModel.score.value!!)
                 apply()
             }
-            beastViewModel.updateWorkoutsWidget(context!!)
+            beastViewModel.updateWorkoutsWidget(requireContext())
         }
     }
 }

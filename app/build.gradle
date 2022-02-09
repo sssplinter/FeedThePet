@@ -65,6 +65,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
+    //Auth
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$version_room"
 
