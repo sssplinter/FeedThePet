@@ -6,9 +6,6 @@ import android.content.Context
 import android.widget.RemoteViews
 import com.kristina.feedthebeast.R
 
-/**
- * Implementation of App Widget functionality.
- */
 class FeedTheBeastWidget : AppWidgetProvider() {
 
     override fun onUpdate(

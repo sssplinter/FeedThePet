@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
-import android.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.core.app.ActivityCompat.startActivityForResult
 
 import com.google.android.gms.common.AccountPicker
 
 import android.content.Intent
 import androidx.core.os.bundleOf
+import com.kristina.feedthebeast.R
 
 const val BUNDLE_KEY = "USER_NAME"
 
@@ -25,9 +24,7 @@ class StartFragment : Fragment() {
 //    private val EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email"
 //    private val SCOPES = "$G_PLUS_SCOPE $USERINFO_SCOPE $EMAIL_SCOPE"
 
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var userName: String
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +45,7 @@ class StartFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(
             item,
-            view!!.findNavController()
+            requireView().findNavController()
         ) || super.onOptionsItemSelected(item)
     }
 
