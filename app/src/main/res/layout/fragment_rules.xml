@@ -110,10 +110,11 @@
 
             <ImageView
                 android:id="@+id/score_img"
-                android:layout_width="227dp"
-                android:layout_height="74dp"
+                android:layout_width="232dp"
+                android:layout_height="99dp"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/beast"
+                android:paddingBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/about_score"

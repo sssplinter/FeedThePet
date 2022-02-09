@@ -13,6 +13,12 @@ data class Achievement(
     var name: String = "Achievement",
 
     @ColumnInfo(name = "score_to_achieve")
-    var score: Int = -1
+    var score: Int = -1,
+
+    @ColumnInfo(name = "achievement_date_milli")
+    var dateMilli: Long = System.currentTimeMillis(),
+
+    @ColumnInfo(name="user_id")
+    var userName: String = ""
 ) {
 }

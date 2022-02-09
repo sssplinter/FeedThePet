@@ -13,9 +13,11 @@ import android.content.Context
 
 import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
+import com.kristina.feedthebeast.database.achievements.Achievement
 import com.kristina.feedthebeast.widget.FeedTheBeastWidget
 
 const val SCORE_DIVIDER = 15
+const val ACHIV_DIVIDER = 20
 
 class BeastViewModel(
     val database: FeedTheBeastDatabaseDao,
@@ -40,7 +42,12 @@ class BeastViewModel(
     val animate: LiveData<Boolean>
         get() = _animate
 
-    private fun checkScore(): Boolean = _score.value?.rem(SCORE_DIVIDER) == 0
+    private val _achieveName = MutableLiveData<String>("")
+    val achieveName: LiveData<String>
+        get() = _achieveName
+
+    private fun checkScore() = _score.value?.rem(SCORE_DIVIDER) == 0
+    private fun checkForAchievement() = _score.value?.rem(ACHIV_DIVIDER) == 0 && _score.value != 0
 
     fun doneAnimation() {
         _animate.value = false
@@ -51,6 +58,10 @@ class BeastViewModel(
         if (checkScore()) {
             _animate.value = true
         }
+        if (checkForAchievement()) {
+            //_achieve.value = true
+            getAchievementName()
+        }
     }
 
     fun setFeedingToDatabase(userName: String) {
@@ -60,8 +71,20 @@ class BeastViewModel(
             feeding.score = _score.value!!
 
             uiScope.launch(Dispatchers.IO) {
-                database.insertFeeding(feeding)
+                val x = database.insertFeeding(listOf(feeding))
+                val y = 5
             }
+        }
+    }
+
+    fun setAchievementToDatabase(userName: String) {
+        val achievement = Achievement()
+        achievement.userName = userName
+        achievement.name = _achieveName.value!!
+        achievement.score = _score.value!!
+
+        uiScope.launch(Dispatchers.IO) {
+            database.insertAchievement(achievement)
         }
     }
 
@@ -79,6 +102,16 @@ class BeastViewModel(
         if (ids != null && ids.isNotEmpty()) {
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
             context.sendBroadcast(intent);
+        }
+    }
+
+    private fun getAchievementName() {
+        _achieveName.value = when (_score.value) {
+            20 -> "Good start"
+            40 -> "Happy cat"
+            60 -> "Very good!"
+            80 -> "So nice!!!!!"
+            else -> "I'm proud of you"
         }
     }
 }

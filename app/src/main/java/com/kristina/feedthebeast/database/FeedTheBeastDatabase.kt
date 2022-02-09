@@ -5,13 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kristina.feedthebeast.database.achievements.Achievement
-import com.kristina.feedthebeast.database.achievements.UserToAchievement
 import com.kristina.feedthebeast.database.feedingData.Feeding
 import com.kristina.feedthebeast.database.users.User
 
 @Database(
-    entities = [User::class, Achievement::class, UserToAchievement::class, Feeding::class],
-    version = 3,
+    entities = [User::class, Achievement::class, Feeding::class],
+    version = 1,
     exportSchema = false
 )
 abstract class FeedTheBeastDatabase : RoomDatabase() {

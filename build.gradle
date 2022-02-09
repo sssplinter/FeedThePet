@@ -10,7 +10,7 @@ buildscript {
         version_lifecycle_extensions = "2.2.0"
         version_lifecycle = "2.2.0"
         version_navigation = '1.0.0'
-        version_room = "2.2.5"
+        version_room = "2.4.1"
     }
 
     repositories {

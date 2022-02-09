@@ -15,6 +15,6 @@ data class User(
     var name: String = "name",
 
     @ColumnInfo(name = "score")
-    var score: Int = 0
+    var maxScore: Int = 0
 ) {
 }

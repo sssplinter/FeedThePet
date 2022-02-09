@@ -5,9 +5,9 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
@@ -35,12 +35,14 @@ class BeastFragment : Fragment() {
         binding = FragmentBeastBinding.inflate(inflater, container, false)
 
         val application = requireNotNull(this.activity).application
+
         val dataSource = FeedTheBeastDatabase.getInstance(application).feedTheBeastDatabaseDao
+
         val viewModelFactory = FeedTheBeastViewModelFactory(dataSource, application)
+
         beastViewModel = ViewModelProvider(this, viewModelFactory).get(BeastViewModel::class.java)
 
         userName = arguments?.getString(BUNDLE_KEY).toString()
-        Log.i("user", userName)
 
         return binding.root
     }
@@ -56,6 +58,13 @@ class BeastFragment : Fragment() {
 
         binding.feedButton.setOnClickListener {
             beastViewModel.feed()
+        }
+
+        beastViewModel.achieveName.observe(viewLifecycleOwner) { achieveName ->
+            if (achieveName.isNotEmpty()) {
+                Toast.makeText(context, "New achievement: $achieveName", Toast.LENGTH_LONG).show()
+                beastViewModel.setAchievementToDatabase(userName)
+            }
         }
 
         beastViewModel.animate.observe(viewLifecycleOwner) { animate ->
