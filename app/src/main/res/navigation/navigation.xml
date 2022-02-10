@@ -7,35 +7,48 @@
     <fragment
         android:id="@+id/startFragment"
         android:name="com.kristina.feedthebeast.StartFragment"
-        android:label="fragment_start"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_beastFragment"
             app:destination="@id/beastFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_newUserFragment"
+            app:destination="@id/newUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/beastFragment"
         android:name="com.kristina.feedthebeast.BeastFragment"
-        android:label="fragment_beast"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_beast" />
     <fragment
         android:id="@+id/rulesFragment"
         android:name="com.kristina.feedthebeast.ui.rules.RulesFragment"
-        android:label="fragment_rules"
+        android:label="@string/rules"
         tools:layout="@layout/fragment_rules" />
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.kristina.feedthebeast.ui.about.AboutFragment"
-        android:label="fragment_about"
+        android:label="@string/about"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/resultsFragment"
         android:name="com.kristina.feedthebeast.ui.results.ResultsFragment"
-        android:label="fragment_results"
+        android:label="@string/results"
         tools:layout="@layout/fragment_results" />
     <fragment
         android:id="@+id/achievementsFragment"
         android:name="com.kristina.feedthebeast.ui.achievements.AchievementsFragment"
-        android:label="fragment_achievements"
+        android:label="@string/achievements"
         tools:layout="@layout/fragment_achievements" />
+    <fragment
+        android:id="@+id/newUserFragment"
+        android:name="com.kristina.feedthebeast.ui.users.NewUserFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_new_user" >
+        <action
+            android:id="@+id/action_newUserFragment_to_beastFragment"
+            app:destination="@id/beastFragment"
+            app:popUpTo="@id/startFragment" />
+    </fragment>
 </navigation>

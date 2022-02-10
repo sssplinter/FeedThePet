@@ -44,6 +44,8 @@ class BeastFragment : Fragment() {
 
         userName = arguments?.getString(BUNDLE_KEY).toString()
 
+        binding.userName.text = userName
+
         return binding.root
     }
 
@@ -55,6 +57,8 @@ class BeastFragment : Fragment() {
         beastViewModel.score.observe(viewLifecycleOwner) { score ->
             binding.score.text = score.toString()
         }
+
+
 
         binding.feedButton.setOnClickListener {
             beastViewModel.feed()

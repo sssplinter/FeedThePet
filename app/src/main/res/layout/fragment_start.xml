@@ -21,68 +21,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                app:layout_constraintBottom_toTopOf="@+id/selected_user"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/selected_user"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="38dp"
-                tools:layout_editor_absoluteY="144dp"
-                app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintBottom_toTopOf="@id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="28sp"
-                app:layout_constraintTop_toBottomOf="@id/sign_in_button"
-                app:layout_constraintBottom_toTopOf="@id/textView"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="@string/users"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="32sp"
                 app:layout_constraintBottom_toTopOf="@+id/users_list"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/selected_user" />
+                app:layout_constraintTop_toBottomOf="@id/sign_in_button" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/users_list"
                 android:layout_width="350dp"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/recycler_bg"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView"
-                app:layout_constraintBottom_toTopOf="@+id/button"/>
+                app:layout_constraintBottom_toTopOf="@+id/new_user"/>
 
             <Button
-                android:id="@+id/start_feeding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/horizontal_margin"
-                android:layout_marginEnd="@dimen/horizontal_margin"
-                android:layout_marginBottom="64dp"
-                android:paddingStart="@dimen/button_padding"
-                android:paddingEnd="@dimen/button_padding"
-                android:text="Play"
-                android:textSize="@dimen/button_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/button"
+                android:id="@+id/new_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Button"
-                app:layout_constraintBottom_toTopOf="@+id/start_feeding"
+                android:layout_marginBottom="120dp"
+                android:text="NEW USER"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"

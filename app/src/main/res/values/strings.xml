@@ -35,5 +35,9 @@
     <string name="results">Results</string>
     <string name="achievements">Achievements</string>
     <string name="users">USERS</string>
+    <string name="registration">REGISTRATION</string>
+    <string name="user_name">User name:</string>
+    <string name="register">REGISTER</string>
+    <string name="input_your_name">input your name</string>
 
 </resources>
