@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast.ui.feed
+package com.kristina.feedthebeast
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
