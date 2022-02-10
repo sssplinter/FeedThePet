@@ -10,12 +10,10 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.kristina.feedthebeast.BUNDLE_KEY
-import com.kristina.feedthebeast.R
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
 import com.kristina.feedthebeast.databinding.FragmentBeastBinding
-import com.kristina.feedthebeast.ui.feed.viewNodel.BeastViewModel
-import com.kristina.feedthebeast.ui.feed.viewNodel.FeedTheBeastViewModelFactory
+import com.kristina.feedthebeast.ui.feed.viewModel.BeastViewModel
+import com.kristina.feedthebeast.ui.feed.viewModel.FeedTheBeastViewModelFactory
 
 private const val FILE_KEY = "PREF_FILE_KEY"
 private const val SAVED_KEY = "SAVED_KEY"
@@ -65,7 +63,7 @@ class BeastFragment : Fragment() {
         beastViewModel.achieveName.observe(viewLifecycleOwner) { achieveName ->
             if (achieveName.isNotEmpty()) {
                 Toast.makeText(context, "New achievement: $achieveName", Toast.LENGTH_LONG).show()
-                beastViewModel.setAchievementToDatabase(userName)
+                beastViewModel.addAchievementToDatabase(userName)
             }
         }
 
@@ -150,7 +148,7 @@ class BeastFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        beastViewModel.setFeedingToDatabase(userName)
+        beastViewModel.addFeedingToDatabase(userName)
 
         val sharedPref = activity?.getSharedPreferences(
             FILE_KEY, Context.MODE_PRIVATE

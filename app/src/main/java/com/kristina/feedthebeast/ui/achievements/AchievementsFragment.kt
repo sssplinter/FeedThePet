@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristina.feedthebeast.database.FeedTheBeastDatabase
+import com.kristina.feedthebeast.database.users.User
 import com.kristina.feedthebeast.databinding.FragmentAchievementsBinding
 
 class AchievementsFragment : Fragment() {

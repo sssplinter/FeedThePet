@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/drawable/recycler_bg.xml" value="0.1" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/drawable/rules.xml" value="0.1" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/achievement_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/activity_splash_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/fragment_achievements.xml" value="0.1" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/fragment_beast.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/fragment_loading_screen.xml" value="0.25416666666666665" />
@@ -12,6 +15,10 @@
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/fragment_rules.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/fragment_start.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/layout/user_item.xml" value="0.4" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/menu/beast_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/menu/navdrawer_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/menu/overflow_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Professional/Desktop/FeedTheBeast (2)/FeedTheBeast/app/src/main/res/xml/layout_bg.xml" value="0.1" />
         <entry key="..\:/Users/krist/AndroidStudioProjects/FeedTheBeastFinal/FeedTheBeast/app/src/main/res/drawable/ic_achievement.xml" value="0.2703125" />
         <entry key="..\:/Users/krist/AndroidStudioProjects/FeedTheBeastFinal/FeedTheBeast/app/src/main/res/drawable/ic_achievement_black.xml" value="0.2703125" />
         <entry key="..\:/Users/krist/AndroidStudioProjects/FeedTheBeastFinal/FeedTheBeast/app/src/main/res/drawable/result_item.xml" value="0.2703125" />

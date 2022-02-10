@@ -41,4 +41,7 @@ interface FeedTheBeastDatabaseDao {
 
     @Query("SELECT * FROM achievements_table ORDER BY achievementId ASC")
     fun getAllAchievements(): LiveData<List<Achievement>>
+
+    @Query("SELECT * FROM users_table ORDER BY userId ASC")
+    fun getAllUsers(): LiveData<List<User>>
 }

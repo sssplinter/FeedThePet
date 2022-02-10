@@ -1,4 +1,4 @@
-package com.kristina.feedthebeast.ui.feed.viewNodel
+package com.kristina.feedthebeast.ui.feed.viewModel
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -63,7 +63,7 @@ class BeastViewModel(
         }
     }
 
-    fun setFeedingToDatabase(userName: String) {
+    fun addFeedingToDatabase(userName: String) {
         if (score.value != 0) {
             val feeding = Feeding()
             feeding.userName = userName
@@ -75,7 +75,7 @@ class BeastViewModel(
         }
     }
 
-    fun setAchievementToDatabase(userName: String) {
+    fun addAchievementToDatabase(userName: String) {
         val achievement = Achievement()
         achievement.userName = userName
         achievement.name = _achieveName.value!!
