@@ -26,7 +26,9 @@ const val BUNDLE_KEY = "USER_NAME"
 class StartFragment : Fragment() {
 
     lateinit var binding: FragmentStartBinding
+
     private lateinit var userName: String
+
     private val googleSignInOptions =
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
